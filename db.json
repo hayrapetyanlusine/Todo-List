@@ -1,0 +1,8 @@
+{
+  "actions": [
+    {
+      "action": "Read book",
+      "id": 1
+    }
+  ]
+}

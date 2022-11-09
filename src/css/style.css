@@ -6,6 +6,103 @@
     font-family: Arial;
 }
 
-body{
-    background-color: pink;
+/* body{
+    background-color: #f7f2ec;
+} */
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    border-radius: 30px;
+    background-color: #003d40;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 350px;
+    height: 450px;
+}
+
+#root h3{
+    color: white;
+    padding: 8px;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+#root form {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#root form .input, .btn{
+    padding: 5px 14px;
+    border-radius: 5px;
+    border: none;
+}
+
+#root form .input{
+    width: 250px;
+    /* margin-right: 7px; */
+}
+
+#root form .btn {
+    background-color: #f7f2ec;
+    font-style: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#root form .btn:hover{
+    background-color: #f7d0a0;
+}
+
+#posts {
+    width: 100%;
+}
+
+.post{
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.post .complated{
+    max-width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+.post .complated input{
+    margin-right: 7px;
+}
+
+
+.post .change .del, .edit{
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.post .change .del{
+    background-color: rgb(235, 147, 147);
+}
+.post .change .del:hover{
+    background-color: rgb(180, 99, 99);
+}
+
+.post .change .edit{
+    background-color: rgb(87, 165, 201);
+}
+.post .change .edit:hover{
+    background-color: rgb(41, 101, 129);
 }

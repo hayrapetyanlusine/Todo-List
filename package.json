@@ -1,0 +1,19 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server db.json",
+    "dev": "npx webpack"
+  },
+  "keywords": [],
+  "author": "Lusine Hayrapetyan",
+  "license": "ISC",
+  
+  "devDependencies": {
+    "json-server": "^0.17.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

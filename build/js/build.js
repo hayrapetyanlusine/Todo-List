@@ -1,6 +1,34 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/delete.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/delete.js ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = function(url, name) {
+
+    async function deleteAction(url, name) {
+        const id = await fetch(url)
+            .then(data => data.json())
+            .then(data => {
+                const filteredAction = data.filter(action => action.action === name)
+                return filteredAction[0].id;
+            });
+
+        await fetch(`${url}/${id}`, {
+            method: "delete"
+        })
+    }
+    
+    deleteAction(url, name)
+        .then(() => console.log("done"))
+        .catch(() => console.log("server error"))     
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/get.js":
 /*!*******************************!*\
   !*** ./src/js/modules/get.js ***!
@@ -23,7 +51,11 @@ module.exports = function(param, posts) {
 /*!*********************************!*\
   !*** ./src/js/modules/posts.js ***!
   \*********************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const del = __webpack_require__(/*! ./delete */ "./src/js/modules/delete.js");
+const put = __webpack_require__(/*! ./put */ "./src/js/modules/put.js");
+const DB_URL = "http://localhost:3000/actions";
 
 module.exports = function actions(parent, postText) {
     const post = document.createElement("div");
@@ -31,17 +63,34 @@ module.exports = function actions(parent, postText) {
     const change = document.createElement("div");
     const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
-    const p = document.createElement("p");
+    const inp = document.createElement("input");
+        inp.setAttribute("type", "text");
+        inp.setAttribute("class", "new-text");
     const editBtn = document.createElement("button");
         editBtn.innerText = "Edit";
     const delBtn = document.createElement("button");
         delBtn.innerText = "Delete";
 
+    editBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        inp.focus();
+
+        inp.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                inp.blur();
+                put(DB_URL, postText, inp.value);
+            }
+        })
+    })
+    delBtn.addEventListener("click", () => {
+        del(DB_URL, postText);
+    })
+
     parent.append(post);
     post.append(complated);
     post.append(change);
     complated.append(checkbox);
-    complated.append(p);
+    complated.append(inp);
     change.append(editBtn);
     change.append(delBtn);
 
@@ -51,7 +100,41 @@ module.exports = function actions(parent, postText) {
     editBtn.classList.add("edit");
     delBtn.classList.add("del");
 
-    p.textContent = postText;
+    inp.value = postText;
+}
+
+/***/ }),
+
+/***/ "./src/js/modules/put.js":
+/*!*******************************!*\
+  !*** ./src/js/modules/put.js ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = function(url, name, newText) {
+
+    async function changeAction(url, name, newText) {
+        const id = await fetch(url)
+            .then(data => data.json())
+            .then(data => {
+                const filteredAction = data.filter(action => action.action === name)
+                return filteredAction[0].id;
+            });
+
+        await fetch(`${url}/${id}`, {
+            method: "put",
+            headers: {
+                "content-type" : "application/json"
+            },
+            body: JSON.stringify({
+                action: newText
+            })
+        })
+    }
+    
+    changeAction(url, name, newText)
+        .then(() => console.log("done"))
+        .catch((err) => console.log(`server error${err}`))     
 }
 
 /***/ })

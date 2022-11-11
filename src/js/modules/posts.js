@@ -1,20 +1,41 @@
+const del = require("./delete");
+const put = require("./put");
+const DB_URL = "http://localhost:3000/actions";
+
 module.exports = function actions(parent, postText) {
     const post = document.createElement("div");
     const complated = document.createElement("div");
     const change = document.createElement("div");
     const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
-    const p = document.createElement("p");
+    const inp = document.createElement("input");
+        inp.setAttribute("type", "text");
+        inp.setAttribute("class", "new-text");
     const editBtn = document.createElement("button");
         editBtn.innerText = "Edit";
     const delBtn = document.createElement("button");
         delBtn.innerText = "Delete";
 
+    editBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        inp.focus();
+
+        inp.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                inp.blur();
+                put(DB_URL, postText, inp.value);
+            }
+        })
+    })
+    delBtn.addEventListener("click", () => {
+        del(DB_URL, postText);
+    })
+
     parent.append(post);
     post.append(complated);
     post.append(change);
     complated.append(checkbox);
-    complated.append(p);
+    complated.append(inp);
     change.append(editBtn);
     change.append(delBtn);
 
@@ -24,5 +45,5 @@ module.exports = function actions(parent, postText) {
     editBtn.classList.add("edit");
     delBtn.classList.add("del");
 
-    p.textContent = postText;
+    inp.value = postText;
 }

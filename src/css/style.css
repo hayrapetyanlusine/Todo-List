@@ -23,6 +23,7 @@
     margin-top: 70px;
     max-width: 350px;
     height: 450px;
+    position: relative;
 }
 
 #root h3{
@@ -84,6 +85,16 @@
     margin-right: 7px;
 }
 
+.post .complated .new-text {
+    color: rgb(231, 228, 228);
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+}
+.post .complated .new-text:focus {
+    border: 0.5px solid gray;
+}
 
 .post .change .del, .edit{
     padding: 3px 5px;

@@ -6,9 +6,9 @@
     font-family: Arial;
 }
 
-/* body{
-    background-color: #f7f2ec;
-} */
+body{
+    background-color: #e7c498;
+}
 
 #root {
     display: flex;
@@ -50,7 +50,6 @@
 
 #root form .input{
     width: 250px;
-    /* margin-right: 7px; */
 }
 
 #root form .btn {
@@ -77,12 +76,14 @@
 }
 
 .post .complated{
-    max-width: 350px;
+    max-width: 170px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 .post .complated input{
     margin-right: 7px;
+    width: 100%;
 }
 
 .post .complated .new-text {
@@ -90,18 +91,41 @@
     padding: 5px;
     border: none;
     background-color: transparent;
-    font-size: 14px;
+    font-size: 16px;
 }
 .post .complated .new-text:focus {
     border: 0.5px solid gray;
 }
+.del-line{
+    display: none;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 160px;
+    height: 2px;
+    border-width: 0;
+    background-color: gray;
+}
+.del-line.active{
+    display: block;
+}
 
-.post .change .del, .edit{
+.post .change{
+    width: 140px;
+}
+.post .change .del, .edit, .done{
     padding: 3px 5px;
     border-radius: 5px;
     border: none;
     margin-left: 5px;
     cursor: pointer;
+}
+
+.done {
+    background-color: rgb(147, 235, 166);
+}
+.done:hover {
+    background-color: rgb(56, 128, 72);
 }
 
 .post .change .del{

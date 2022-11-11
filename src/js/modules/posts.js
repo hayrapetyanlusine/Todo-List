@@ -6,16 +6,21 @@ module.exports = function actions(parent, postText) {
     const post = document.createElement("div");
     const complated = document.createElement("div");
     const change = document.createElement("div");
-    const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
+    const hr = document.createElement("hr");
+        hr.setAttribute("class", "del-line");
     const inp = document.createElement("input");
         inp.setAttribute("type", "text");
         inp.setAttribute("class", "new-text");
+    const doneBtn = document.createElement("button");
+        doneBtn.innerText = "Done";
     const editBtn = document.createElement("button");
         editBtn.innerText = "Edit";
     const delBtn = document.createElement("button");
         delBtn.innerText = "Delete";
 
+    doneBtn.addEventListener("click", () => {
+        hr.classList.toggle("active");
+    })
     editBtn.addEventListener("click", (e) => {
         e.preventDefault();
         inp.focus();
@@ -34,14 +39,16 @@ module.exports = function actions(parent, postText) {
     parent.append(post);
     post.append(complated);
     post.append(change);
-    complated.append(checkbox);
+    complated.append(hr);
     complated.append(inp);
+    change.append(doneBtn);
     change.append(editBtn);
     change.append(delBtn);
 
     post.classList.add("post");
     complated.classList.add("complated");
     change.classList.add("change");
+    doneBtn.classList.add("done");
     editBtn.classList.add("edit");
     delBtn.classList.add("del");
 

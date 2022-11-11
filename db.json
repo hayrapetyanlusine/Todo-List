@@ -1,12 +1,3 @@
 {
-  "actions": [
-    {
-      "action": "Learn React",
-      "id": 5
-    },
-    {
-      "action": "Go to the store",
-      "id": 6
-    }
-  ]
+  "actions": []
 }
